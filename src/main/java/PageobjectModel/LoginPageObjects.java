@@ -2,6 +2,7 @@ package PageobjectModel;
 
 import org.openqa.selenium.By;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -13,9 +14,9 @@ public class LoginPageObjects {
 		private By username=By.xpath("//input[@id='username']");
 		private By password=By.xpath("//input[@id='password']");
 	    private By Login=By.xpath("//input[@id='Login']");
+	    private By tryForFree=By.xpath("//a[@id='signup_link']");
 	    
-	   
-	    
+	    By errorMessage=By.xpath("//div[@id='error']");
 		
 
 		public LoginPageObjects(WebDriver driver2) {
@@ -35,5 +36,12 @@ public class LoginPageObjects {
 	    	return driver.findElement(Login);
 	    	
 	    }
-
+	    public WebElement clickontryForFreee(){
+	    	return driver.findElement(tryForFree);
+	    }
+	    public WebElement errortext(){
+	    	return driver.findElement(errorMessage);
+	    
+	    
+}
 }

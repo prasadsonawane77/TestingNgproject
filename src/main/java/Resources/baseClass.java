@@ -9,20 +9,24 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class baseClass {
 	
 	public WebDriver driver;
 	
+	public Properties prop;
+	
 	public void driverIntilize() throws IOException {
 		
 		
-  //This will read the properties
-	FileInputStream fis=new FileInputStream("C:\\Users\\prasa\\eclipse-workspace\\SeleniumTestNgProject16thNov\\src\\main\\java\\Resources\\data.properties");
+  //This will read the properties file
+	FileInputStream fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\Resources\\data.properties");
 	
 	//accee the properties file--
 	
-	Properties prop=new Properties();
+	 prop=new Properties();
 	prop.load(fis);
 	
 	String browserName= prop.getProperty("browser");
@@ -45,13 +49,23 @@ public class baseClass {
 	}
 	
 	
-	
-	
 	}
 	
+	@BeforeMethod
+	public void openurl() throws IOException {
+		driverIntilize();
+	//This driver have scope
+	String urlName= prop.getProperty("url");
+	driver.get(urlName);
 	
-	
-	
+	}
+	@AfterMethod
+	public void closeBrowser() throws IOException {
+		
+		
+	driver.quit();
+	}
+		
 	
 
 }
